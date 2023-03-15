@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Box, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import { store } from '../store';
@@ -10,6 +10,9 @@ function Input() {
 
     const formSubmit = (e) => {
         e.preventDefault()
+        if (!/[a-z]/gi.test(inputRef.current.childNodes[0].value)) {
+            return null
+        }
         addToDo(input.value);
         inputRef.current.childNodes[0].value = ''
     }
